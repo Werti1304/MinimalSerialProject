@@ -12,8 +12,9 @@ $dbh = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
      die("Connection failed: " . $dbh->connect_error);
  }
 
-$sql = "SELECT Temperature, Time, reading_id FROM temperatures ORDER BY reading_id";
+$sql = "SELECT Temperature, Time, reading_id FROM temperatures ORDER BY reading_id DESC";
 
+print "<h2>";
 foreach($dbh->query($sql) as $row)
 {
         $id = $row["reading_id"];
@@ -21,4 +22,5 @@ foreach($dbh->query($sql) as $row)
         $temperature = $row["Temperature"];
         print $id . " | " . $time . " | " . $temperature . "°C<br>";
 }
+print "</h2>";
 ?>
