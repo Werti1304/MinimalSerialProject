@@ -76,11 +76,17 @@ namespace MinimalSerialProjekt
         baudRate = defBaudRate;
       }
 
-      Console.Write($"Disable MySQL and Apache after closing {closeXamppServices}: ");
+      Console.Write($"Disable MySQL and Apache after closing [{closeXamppServices}]: ");
       var inp = Console.ReadLine()?.ToLower();
       if (inp == "false" || inp == "f")
       {
         closeXamppServices = false;
+      }
+
+      if (!SerialPort.GetPortNames().Contains(comPort))
+      {
+        Console.WriteLine("COM-Port wasn't found. Please try again");
+        Stop();
       }
 
       // Create and open serial port with newly acquired information
@@ -118,6 +124,8 @@ namespace MinimalSerialProjekt
       mySqlManager?.Close();
 
       Console.Read();
+
+      Environment.Exit(0);
     }
 
     private static readonly Regex RegexTempMatch = new Regex(@"([0-9]{2})+\.+([0-9]{2})");
