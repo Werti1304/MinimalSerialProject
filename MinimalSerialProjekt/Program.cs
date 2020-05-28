@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.ServiceProcess;
 using System.Text.RegularExpressions;
 using static System.String;
 
@@ -38,7 +37,9 @@ namespace MinimalSerialProjekt
       xamppManager.Start();
 
       string[] openPorts = SerialPort.GetPortNames();
-      string lastPort = openPorts.Last();
+
+      string lastPort = openPorts.LastOrDefault();
+
       string openPortsString = "";
 
       // Creates string that creates all COM-Port options

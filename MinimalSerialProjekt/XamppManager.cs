@@ -100,10 +100,10 @@ namespace MinimalSerialProjekt
     {
       try
       {
-        using (var client = new TcpClient(hostUri, portNumber))
+        using (TcpClient client = new TcpClient(hostUri, portNumber))
           return true;
       }
-      catch (SocketException ex)
+      catch (SocketException)
       {
         return false;
       }
