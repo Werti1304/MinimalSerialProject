@@ -97,6 +97,8 @@ namespace MinimalSerialProjekt
       // Open connection to mysql server
       mySqlManager.Open();
 
+      System.Diagnostics.Process.Start("http://localhost/Temperature/simple.php");
+
       // Wait for Enter Key Press
       Console.ReadLine();
 
